@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -176,8 +177,8 @@ const TailorsList = () => {
                   <SelectItem value="all">All Specialties</SelectItem>
                   <SelectItem value="suits">Suits</SelectItem>
                   <SelectItem value="dresses">Dresses</SelectItem>
-                  <SelectItem value="casual wear">Casual Wear</SelectItem>
-                  <SelectItem value="formal wear">Formal Wear</SelectItem>
+                  <SelectItem value="casual-wear">Casual Wear</SelectItem>
+                  <SelectItem value="formal-wear">Formal Wear</SelectItem>
                   <SelectItem value="alterations">Alterations</SelectItem>
                 </SelectContent>
               </Select>
