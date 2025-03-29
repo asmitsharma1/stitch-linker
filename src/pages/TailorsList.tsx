@@ -92,8 +92,8 @@ const TAILORS = [
 
 const TailorsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [priceFilter, setPriceFilter] = useState("");
-  const [specialtyFilter, setSpecialtyFilter] = useState("");
+  const [priceFilter, setPriceFilter] = useState("all");
+  const [specialtyFilter, setSpecialtyFilter] = useState("all");
   const [sortBy, setSortBy] = useState("rating");
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,12 +108,12 @@ const TailorsList = () => {
       tailor.location.toLowerCase().includes(searchTerm.toLowerCase());
     
     // Apply price filter
-    const matchesPrice = priceFilter ? tailor.price === priceFilter : true;
+    const matchesPrice = priceFilter === "all" ? true : tailor.price === priceFilter;
     
     // Apply specialty filter
-    const matchesSpecialty = specialtyFilter 
-      ? tailor.specialty.some(s => s.toLowerCase() === specialtyFilter.toLowerCase())
-      : true;
+    const matchesSpecialty = specialtyFilter === "all"
+      ? true
+      : tailor.specialty.some(s => s.toLowerCase() === specialtyFilter.toLowerCase());
 
     return matchesSearch && matchesPrice && matchesSpecialty;
   }).sort((a, b) => {
@@ -161,7 +161,7 @@ const TailorsList = () => {
                   <SelectValue placeholder="Price Range" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Prices</SelectItem>
+                  <SelectItem value="all">All Prices</SelectItem>
                   <SelectItem value="economy">Budget-friendly</SelectItem>
                   <SelectItem value="medium">Mid-range</SelectItem>
                   <SelectItem value="premium">Premium</SelectItem>
@@ -174,7 +174,7 @@ const TailorsList = () => {
                   <SelectValue placeholder="Specialty" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Specialties</SelectItem>
+                  <SelectItem value="all">All Specialties</SelectItem>
                   <SelectItem value="suits">Suits</SelectItem>
                   <SelectItem value="dresses">Dresses</SelectItem>
                   <SelectItem value="casual wear">Casual Wear</SelectItem>
@@ -285,8 +285,8 @@ const TailorsList = () => {
           <Button 
             onClick={() => {
               setSearchTerm("");
-              setPriceFilter("");
-              setSpecialtyFilter("");
+              setPriceFilter("all");
+              setSpecialtyFilter("all");
             }}
             variant="outline"
           >
